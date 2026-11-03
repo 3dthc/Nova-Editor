@@ -1,0 +1,36 @@
+# Builds Nova Editor in GitHub Actions and attaches its zips to a DRAFT release (tools pinned to one
+# mpc-vst-plugins commit, in both places). Install a zip on an MPC, test it, then publish the draft.
+#   Actions -> Release -> Run workflow: version
+#
+# "targets" in vst/vst.json lists armv7 and aarch64, so one run packages a zip per architecture and both go on the
+# same tag. The aarch64 build has never run on a Gen2 device: see the status table in README.md.
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version, e.g. 0.7.0
+        type: string
+        required: true
+      dry_run:
+        description: Build and package only (zips and previews as run artifacts), no draft release
+        type: boolean
+        default: false
+
+jobs:
+  vst:
+    uses: 3dthc/mpc-vst-plugins/.github/workflows/vst-release.yml@c6b4bb0b4939bbf64e2017bd3c11d95a080799f9
+    permissions: { contents: write }
+    with:
+      tag: nova-editor-v${{ inputs.version }}
+      version: ${{ inputs.version }}
+      tools_ref: c6b4bb0b4939bbf64e2017bd3c11d95a080799f9
+      vst_dir: vst
+      build: 'python3 tools/layout.py && "$MPC_VST/tools/build_port.sh" vst/vst.json all'
+      host_test: '"$MPC_VST/tools/test_port.sh" vst/vst.json'
+      extra: vst/fonts:fonts
+      about: Editor and librarian for the Novation MiniNova, and a SysEx patch librarian for any other synth.
+      plugin_id: nova-editor
+      license: MIT
+      dry_run: ${{ inputs.dry_run }}

@@ -1,0 +1,4 @@
+[
+  {"version": "0.7.0", "device": "MPC Live II", "firmware": "3.10", "date": "2026-11-03",
+   "notes": "Gen1 armv7 build. Editing, patch following, the librarian and the save confirmation were checked on the device with a MiniNova over the bridge, with nova-audio loaded for sound. The aarch64 build has not run on a Gen2, and no MPC OS 2.x device has run this skin."}
+]

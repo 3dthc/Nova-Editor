@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="112" viewBox="0 0 64 112"><defs>
+ <linearGradient id="kb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f6f8c"/><stop offset="1" stop-color="#244a61"/></linearGradient>
+ <linearGradient id="kh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.16"/>
+  <stop offset="0.5" stop-color="#fff" stop-opacity="0.02"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+ <filter id="kg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+</defs><rect x="1" y="2" width="62" height="110" rx="13" fill="#000" opacity="0.55"/><rect x="1" y="1" width="62" height="109" rx="13" fill="url(#kb)" stroke="#15181c" stroke-width="1"/><rect x="2" y="2" width="60" height="56" rx="12" fill="url(#kh)"/><path d="M26.6,40 L37.4,56 L26.6,72" fill="none" stroke="#6fd6ff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" filter="url(#kg)"/><path d="M26.6,40 L37.4,56 L26.6,72" fill="none" stroke="#e6f8ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>

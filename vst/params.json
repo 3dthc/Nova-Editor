@@ -1,0 +1,560 @@
+{
+  "name": "Nova Editor",
+  "params": [
+    {
+      "key": "lcd_info",
+      "name": "Display",
+      "type": "readout",
+      "display": "string"
+    },
+    {
+      "key": "lcd_name",
+      "name": "Patch Name",
+      "type": "readout",
+      "display": "string"
+    },
+    {
+      "key": "linked",
+      "name": "Connected",
+      "options": [
+        "Off",
+        "On"
+      ],
+      "default": "Off"
+    },
+    {
+      "key": "receive",
+      "name": "Receive",
+      "type": "trigger",
+      "momentary": true
+    },
+    {
+      "key": "patch_prev",
+      "name": "Previous patch",
+      "type": "trigger",
+      "momentary": true
+    },
+    {
+      "key": "patch_next",
+      "name": "Next patch",
+      "type": "trigger",
+      "momentary": true
+    },
+    {
+      "key": "view",
+      "name": "View",
+      "options": [
+        "Edit",
+        "Patches"
+      ],
+      "default": "Edit"
+    },
+    {
+      "key": "chan",
+      "name": "MIDI Channel",
+      "display": "int",
+      "min": 1,
+      "max": 16,
+      "default": 1
+    },
+    {
+      "key": "osc_sel",
+      "name": "Oscillator",
+      "options": [
+        "1",
+        "2",
+        "3"
+      ],
+      "default": "1"
+    },
+    {
+      "key": "o_wave",
+      "name": "Wave",
+      "options": [
+        "Sine",
+        "Triangle",
+        "Sawtooth",
+        "Saw 9:1PW",
+        "Saw 8:2PW",
+        "Saw 7:3PW",
+        "Saw 6:4PW",
+        "Saw 5:5PW",
+        "Saw 4:6PW",
+        "Saw 3:7PW",
+        "Saw 2:8PW",
+        "Saw 1:9PW",
+        "Pulse",
+        "Square",
+        "Bass Camp",
+        "Bass FM",
+        "EP Dull",
+        "EP Bell",
+        "Clav",
+        "Double Reed",
+        "Retro",
+        "String Mch 1",
+        "String Mch 2",
+        "Organ 1",
+        "Organ 2",
+        "Evil Organ",
+        "Hi Stuff",
+        "Bell FM 1",
+        "Bell FM 2",
+        "Dig Bell 1",
+        "Dig Bell 2",
+        "Dig Bell 3",
+        "Dig Bell 4",
+        "Digi Pad",
+        "Wavetable 1",
+        "Wavetable 2",
+        "Wavetable 3",
+        "Wavetable 4",
+        "Wavetable 5",
+        "Wavetable 6",
+        "Wavetable 7",
+        "Wavetable 8",
+        "Wavetable 9",
+        "Wavetable 10",
+        "Wavetable 11",
+        "Wavetable 12",
+        "Wavetable 13",
+        "Wavetable 14",
+        "Wavetable 15",
+        "Wavetable 16",
+        "Wavetable 17",
+        "Wavetable 18",
+        "Wavetable 19",
+        "Wavetable 20",
+        "Wavetable 21",
+        "Wavetable 22",
+        "Wavetable 23",
+        "Wavetable 24",
+        "Wavetable 25",
+        "Wavetable 26",
+        "Wavetable 27",
+        "Wavetable 28",
+        "Wavetable 29",
+        "Wavetable 30",
+        "Wavetable 31",
+        "Wavetable 32",
+        "Wavetable 33",
+        "Wavetable 34",
+        "Wavetable 35",
+        "Wavetable 36",
+        "Audio In L",
+        "Audio In R"
+      ],
+      "dynamic_display": true,
+      "default": "Sawtooth"
+    },
+    {
+      "key": "o_semi",
+      "name": "Semitones",
+      "min": -64,
+      "max": 63,
+      "dynamic_display": true,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "o_cents",
+      "name": "Cents",
+      "min": -64,
+      "max": 63,
+      "dynamic_display": true,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "o_pw",
+      "name": "Pulse Width",
+      "min": -64,
+      "max": 63,
+      "dynamic_display": true,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "o_dens",
+      "name": "Density",
+      "min": 0,
+      "max": 127,
+      "dynamic_display": true,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "o_level",
+      "name": "Level",
+      "min": 0,
+      "max": 127,
+      "dynamic_display": true,
+      "default": 127,
+      "display": "int"
+    },
+    {
+      "key": "f_type",
+      "name": "Filter Type",
+      "options": [
+        "LP6",
+        "LP12",
+        "LP18",
+        "LP24",
+        "BP6-6",
+        "BP12-12",
+        "BP6-12",
+        "BP12-6",
+        "BP6-18",
+        "BP18-6",
+        "HP6",
+        "HP12",
+        "HP18",
+        "HP24"
+      ],
+      "default": "LP24"
+    },
+    {
+      "key": "f_freq",
+      "name": "Cutoff",
+      "min": 0,
+      "max": 127,
+      "default": 127,
+      "display": "int"
+    },
+    {
+      "key": "f_res",
+      "name": "Resonance",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "f_env",
+      "name": "Env Amount",
+      "min": -64,
+      "max": 63,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "f_drive",
+      "name": "Drive",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "env_sel",
+      "name": "Envelope",
+      "options": [
+        "Amp",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "default": "Amp"
+    },
+    {
+      "key": "e_att",
+      "name": "Attack",
+      "min": 0,
+      "max": 127,
+      "dynamic_display": true,
+      "default": 2,
+      "display": "int"
+    },
+    {
+      "key": "e_dec",
+      "name": "Decay",
+      "min": 0,
+      "max": 127,
+      "dynamic_display": true,
+      "default": 90,
+      "display": "int"
+    },
+    {
+      "key": "e_sus",
+      "name": "Sustain",
+      "min": 0,
+      "max": 127,
+      "dynamic_display": true,
+      "default": 127,
+      "display": "int"
+    },
+    {
+      "key": "e_rel",
+      "name": "Release",
+      "min": 0,
+      "max": 127,
+      "dynamic_display": true,
+      "default": 40,
+      "display": "int"
+    },
+    {
+      "key": "lfo_sel",
+      "name": "LFO",
+      "options": [
+        "1",
+        "2",
+        "3"
+      ],
+      "default": "1"
+    },
+    {
+      "key": "l_wave",
+      "name": "LFO Wave",
+      "options": [
+        "Sine",
+        "Triangle",
+        "Sawtooth",
+        "Square",
+        "Random S/H",
+        "Time S/H",
+        "Piano Env",
+        "Seq 1",
+        "Seq 2",
+        "Seq 3",
+        "Seq 4",
+        "Seq 5",
+        "Seq 6",
+        "Seq 7",
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4",
+        "Alt 5",
+        "Alt 6",
+        "Alt 7",
+        "Alt 8",
+        "Chromatic",
+        "Chrom 16",
+        "Major",
+        "Major 7",
+        "Minor 7",
+        "Min Arp 1",
+        "Min Arp 2",
+        "Diminished",
+        "Dec Minor",
+        "Minor 3rd",
+        "Pedal",
+        "4ths",
+        "4ths x12",
+        "1625 Maj",
+        "1625 Min",
+        "2511"
+      ],
+      "dynamic_display": true,
+      "default": "Sine"
+    },
+    {
+      "key": "l_rate",
+      "name": "Rate",
+      "min": 0,
+      "max": 127,
+      "dynamic_display": true,
+      "default": 68,
+      "display": "int"
+    },
+    {
+      "key": "l_delay",
+      "name": "Delay",
+      "min": 0,
+      "max": 127,
+      "dynamic_display": true,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "l_slew",
+      "name": "Slew",
+      "min": 0,
+      "max": 127,
+      "dynamic_display": true,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "audio_in",
+      "name": "Audio In",
+      "options": [
+        "Off",
+        "In 1+2",
+        "In 1",
+        "In 2"
+      ],
+      "default": "In 1+2"
+    },
+    {
+      "key": "fx_mix",
+      "name": "FX Mix",
+      "min": 0,
+      "max": 127,
+      "default": 127,
+      "display": "int"
+    },
+    {
+      "key": "glide",
+      "name": "Glide",
+      "min": 0,
+      "max": 127,
+      "default": 0,
+      "display": "int"
+    },
+    {
+      "key": "arp_on",
+      "name": "Arp",
+      "options": [
+        "Arp Off",
+        "Arp On"
+      ],
+      "default": "Arp Off"
+    },
+    {
+      "key": "lib_bank",
+      "name": "Bank",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "Import",
+        "Synth"
+      ],
+      "default": "A"
+    },
+    {
+      "key": "lib_page",
+      "name": "Page",
+      "display": "int",
+      "min": 1,
+      "max": 8,
+      "dynamic_display": true,
+      "default": 1
+    },
+    {
+      "key": "lib_page_prev",
+      "name": "Previous page",
+      "type": "trigger",
+      "momentary": true
+    },
+    {
+      "key": "lib_page_next",
+      "name": "Next page",
+      "type": "trigger",
+      "momentary": true
+    },
+    {
+      "key": "row_1",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_2",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_3",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_4",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_5",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_6",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_7",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_8",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_9",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_10",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_11",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_12",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_13",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_14",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_15",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "row_16",
+      "name": "Patch",
+      "display": "string"
+    },
+    {
+      "key": "tgt_bank",
+      "name": "Write Bank",
+      "options": [
+        "A",
+        "B",
+        "C"
+      ],
+      "default": "C"
+    },
+    {
+      "key": "tgt_slot",
+      "name": "Write Slot",
+      "display": "int",
+      "min": 1,
+      "max": 128,
+      "default": 128
+    },
+    {
+      "key": "write",
+      "name": "Write",
+      "type": "trigger",
+      "momentary": true
+    },
+    {
+      "key": "export",
+      "name": "Export",
+      "type": "trigger",
+      "momentary": true
+    }
+  ]
+}

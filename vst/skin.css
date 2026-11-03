@@ -1,0 +1,44 @@
+/* Nova Editor: a graphite hardware panel. The faceplate, display glass, wells, patch keys and connection light are
+   drawn in art/*.svg; this sheet styles the controls on top. Every edge rounded, lit text on dark glass. */
+@font-face { font-family: "Inter"; src: url("fonts/Inter.ttf"); font-weight: 100 900; }
+:root {
+  --font: "Inter", "Titillium Web", sans-serif;
+  --title-font: "Inter", sans-serif;
+  --title-size: 15px;
+  --label-size: 14px;
+  --seg-size: 14px;
+  --button-size: 16px;
+  --radius: 10px;
+  --sheen: 0.10;
+  --shadow: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55));
+}
+text { font-family: var(--font); }
+
+/* sections: the wells are in the artwork, so frames draw nothing */
+.frame-border, .frame-rule { fill: none; stroke: none; }
+
+/* drop-down fields and the page counter: tinted glass, rounded */
+.box { fill: rgba(6, 14, 19, 0.6); stroke: rgba(111, 214, 255, 0.22); stroke-width: 1; rx: 9px; ry: 9px; }
+.arrow-bg { fill: #333a42; stroke: #1a1e23; stroke-width: 1; rx: 9px; ry: 9px; filter: var(--shadow); }
+.arrow { fill: #7fdcff; }
+
+/* switches: rounded keycaps with a soft top light; the chosen one lit blue */
+.seg-bg { rx: 9px; ry: 9px; stroke: rgba(0, 0, 0, 0.55); stroke-width: 1; filter: var(--shadow); }
+.seg-sheen { rx: 9px; ry: 9px; }
+.seg-tx { font-family: "Inter", sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.06em; }
+
+/* knobs: a domed black cap inside a cyan LED ring */
+.look-lbody { fill: url(#dome-radial); stroke: #050607; stroke-width: 1.2; filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.7)); }
+.look-lline { stroke: #f2f6f9; }
+.look-led-on { fill: #6fd6ff; filter: drop-shadow(0 0 3px rgba(80, 200, 255, 0.8)); }
+.look-led-off { fill: #3a414a; }
+
+/* buttons: rounded, deep steel blue, no glare at night */
+.button-bg { fill: #1d6c9b; rx: 12px; ry: 12px; stroke: rgba(0, 0, 0, 0.5); stroke-width: 1;
+             filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.55)); }
+.button-tx { fill: #ffffff; font-family: "Inter", sans-serif; font-weight: 700; letter-spacing: 0.12em; font-size: 15px !important; }
+.button.look-image .button-bg { fill: none; stroke: none; filter: none; }
+
+/* patch list rows: rounded glass tiles */
+.tile { rx: 10px; ry: 10px; stroke: rgba(255, 255, 255, 0.05); stroke-width: 1; }
+.tile-border { rx: 10px; ry: 10px; }

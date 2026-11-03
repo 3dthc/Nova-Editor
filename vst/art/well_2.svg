@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="548" height="244" viewBox="0 0 548 244"><defs>
+ <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#363b42"/><stop offset="0.5" stop-color="#2b3036"/><stop offset="1" stop-color="#23272c"/>
+ </linearGradient>
+ <radialGradient id="toplight" cx="0.5" cy="-0.15" r="0.9">
+  <stop offset="0" stop-color="#ffffff" stop-opacity="0.07"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+ </radialGradient>
+ <linearGradient id="well" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#1a1e23"/><stop offset="0.12" stop-color="#1f2329"/><stop offset="1" stop-color="#22272d"/>
+ </linearGradient>
+ <filter id="inset" x="-5%" y="-5%" width="110%" height="110%">
+  <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="b"/>
+  <feOffset in="b" dy="3" result="o"/>
+  <feComposite in="SourceAlpha" in2="o" operator="out" result="ring"/>
+  <feFlood flood-color="#000" flood-opacity="0.75"/>
+  <feComposite in2="ring" operator="in" result="shadow"/>
+  <feComposite in="shadow" in2="SourceAlpha" operator="in"/>
+ </filter>
+ <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#0c1820"/><stop offset="1" stop-color="#0f1f28"/>
+ </linearGradient>
+ <linearGradient id="glare" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#ffffff" stop-opacity="0.10"/><stop offset="0.45" stop-color="#ffffff" stop-opacity="0.02"/>
+  <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+ </linearGradient>
+ <radialGradient id="glow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#2fb7ff" stop-opacity="0.10"/><stop offset="1" stop-color="#2fb7ff" stop-opacity="0"/>
+ </radialGradient>
+</defs><defs><linearGradient id="plateabs" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="628"><stop offset="0" stop-color="#363b42"/><stop offset="0.5" stop-color="#2b3036"/><stop offset="1" stop-color="#23272c"/></linearGradient></defs><g transform="translate(-12,-380)"><rect x="12" y="380" width="548" height="244" fill="url(#plateabs)"/><rect x="15" y="383" width="542" height="239" rx="15" fill="#ffffff" fill-opacity="0.07"/><rect x="15" y="382.5" width="542" height="237.5" rx="15" fill="#0b0d10" fill-opacity="0.85"/><rect x="16" y="384" width="540" height="236" rx="14" fill="url(#well)"/><rect x="16" y="384" width="540" height="236" rx="14" fill="#000" filter="url(#inset)"/><rect x="34" y="428" width="504" height="1" fill="#ffffff" fill-opacity="0.05"/></g></svg>
