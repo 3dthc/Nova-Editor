@@ -8,6 +8,8 @@ MPC does not recognise the MiniNova over USB, so the synth is reached through a 
 (`bridge/`), and its sound comes back onto the plugin's own track through a separate addin
 ([nova-audio](https://github.com/3dthc/mpc-addin-nova-audio)) instead of a second audio track.
 
+![Nova Editor on the MPC screen](nova-editor-main.png)
+
 ## What it does
 
 - **Editing.** Every control maps to a MiniNova CC, NRPN or packed NRPN switch. A control sends only when its value
