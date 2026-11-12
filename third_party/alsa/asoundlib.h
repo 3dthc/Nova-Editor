@@ -38,7 +38,14 @@
 #include <poll.h>
 #include <errno.h>
 #include <stdarg.h>
+#ifdef __APPLE__   /* desktop VST3 on macOS: no <endian.h> there */
+#include <machine/endian.h>
+#define __BYTE_ORDER BYTE_ORDER
+#define __LITTLE_ENDIAN LITTLE_ENDIAN
+#define __BIG_ENDIAN BIG_ENDIAN
+#else
 #include <endian.h>
+#endif
 
 #ifndef DOC_HIDDEN
 #ifndef __GNUC__
