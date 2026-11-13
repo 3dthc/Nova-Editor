@@ -1,0 +1,34 @@
+# Cross-compiles nova_bridge_restore.so (armv7, Gen1) and uploads it with its .lua/.ini next to it as a run
+# artifact -- no release, since bridge/restore is a personal device patch, not a catalog plugin.
+name: Build Nova Bridge Restore
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up QEMU (armhf build runs under emulation)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Build
+        working-directory: bridge/restore
+        run: |
+          set -eu
+          docker run --rm --platform linux/arm/v7 -v "$PWD":/w -w /w arm32v7/gcc:11-bullseye sh -euc '
+            gcc -shared -fPIC -fvisibility=hidden -std=gnu11 -O2 -Wall -Wextra \
+                -o nova_bridge_restore.so nova_bridge_restore.c
+            strip nova_bridge_restore.so
+            echo "exported: $(readelf --dyn-syms -W nova_bridge_restore.so | grep -E " GLOBAL .* [0-9]+ [A-Za-z]" | grep -v UND | awk "{print \$8}" | tr "\n" " ")"
+            echo "highest glibc: $(readelf -V nova_bridge_restore.so | grep -o "GLIBC_[0-9.]*" | sort -uV | tail -1)"
+          '
+          mkdir -p dist
+          cp nova_bridge_restore.so nova_bridge_restore.lua nova_bridge_restore.ini install.sh uninstall.sh README.md dist/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nova-bridge-restore
+          path: bridge/restore/dist/*
