@@ -35,5 +35,4 @@ jobs:
       plugin_id: nova-editor
       license: MIT
       dry_run: ${{ inputs.dry_run }}
-      desktop: true
-      desktop_targets: '["macos"]'   # its MIDI link is ALSA (Linux); Windows has neither poll.h nor ALSA
+      desktop: false   # MPC only: its MIDI link is the MPC's ALSA
