@@ -64,6 +64,19 @@ Three pieces, in this order:
 
 Then add **Nova Editor** to a track from the plugin browser.
 
+## On a computer (MPC Desktop, Logic Pro, DAWs)
+
+Each release also has Nova Editor for a computer, with the same sound and touchscreen skin. A project saved on the MPC opens in MPC Desktop (controller mode) with the plugin in place.
+
+- **Mac, MPC Desktop and VST3 hosts:** `-macos-vst3.zip` (`.vst3`).
+- **Mac, Logic Pro and GarageBand:** `-macos-au.zip` (`.component`, the Audio Unit).
+
+Both Mac zips are universal (Apple Silicon and Intel). If macOS says the plugin "can't be verified", put the downloaded zips in Downloads and run this in Terminal. It installs and unblocks the VST3 and the Audio Unit alike, even though the zips' README only says VST3:
+
+```
+curl -fsSL https://raw.githubusercontent.com/3dthc/mpc-vst-plugins/desktop-vst3-openmpc/tools/install_mac_vst3.sh | bash
+```
+
 ## Build
 
 ```sh
