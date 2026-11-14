@@ -1,5 +1,7 @@
 # Nova Editor
 
+[![Support me on Ko-fi](https://img.shields.io/badge/Support%20me%20on-Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/3dthc)
+
 An editor and librarian for the **Novation MiniNova**, as a native plugin for Akai MPC OS standalone devices, with
 its own MPC screen skin. It also works as a **SysEx librarian for any other synth**: receive, list, export and send
 patch dumps back.
