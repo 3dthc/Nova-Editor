@@ -166,13 +166,39 @@ static void usb_close(void) {
     pthread_mutex_unlock(&g_usb_mx);
 }
 
+/* Writes "<name>:1.0" to the owning driver's unbind file, so the kernel lets go of interface 0 right now instead
+ * of only when install.sh is run by hand. This is the one-time step install.sh already does, moved into the
+ * running bridge so it happens on every boot (and after a MiniNova replug), not just right after an SSH session. */
+static void unbind_from_driver(const char *name, const char *drv) {
+    char p[300], ifc[80];
+    snprintf(p, sizeof p, "/sys/bus/usb/drivers/%s/unbind", drv);
+    int fd = open(p, O_WRONLY);
+    if (fd < 0) return;
+    snprintf(ifc, sizeof ifc, "%s:1.0", name);
+    ssize_t w = write(fd, ifc, strlen(ifc));
+    (void)w;
+    close(fd);
+}
+
 /* open and claim; returns 1 when linked. Logs only when the reason changes, so a missing synth doesn't fill the log. */
 static int usb_open(void) {
     static char last[160];
     char why[160] = "", name[64], drv[64];
     int bus, dev;
     if (!usb_find(name, sizeof name, &bus, &dev, drv, sizeof drv)) snprintf(why, sizeof why, "MiniNova not on USB");
-    else if (drv[0]) snprintf(why, sizeof why, "interface 0 is owned by driver \"%s\" (run install.sh again)", drv);
+    else if (drv[0]) {
+        /* The kernel's own class driver (snd-usb-audio, usually) claims the MiniNova the moment USB enumerates it --
+         * well before this service starts at boot -- so waiting for someone to notice and re-run install.sh left
+         * the bridge silently stuck "waiting" forever. Take it back ourselves and retry the claim immediately. */
+        unbind_from_driver(name, drv);
+        usleep(100000);
+        if (!usb_find(name, sizeof name, &bus, &dev, drv, sizeof drv))
+            snprintf(why, sizeof why, "MiniNova not on USB (vanished during unbind)");
+        else if (drv[0])
+            snprintf(why, sizeof why, "still owned by \"%s\" (unbind didn't take)", drv);
+        /* else: unbound successfully; falls through to the endpoint/claim checks below on this same call */
+    }
+    if (why[0]) { /* already failed above */ }
     else if (!g_in || !g_out) snprintf(why, sizeof why, "interface 0 has no bulk/interrupt endpoints");
     else {
         char path[64];

@@ -1,0 +1,34 @@
+# Cross-compiles nova-bridge (armv7, Gen1) and uploads it as a run artifact next to install.sh/uninstall.sh --
+# no release, since this ships inside a scp'd folder (bridge/README.md), not through the catalog.
+name: Build Nova Bridge
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up QEMU (armhf build runs under emulation)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Build
+        working-directory: bridge
+        run: |
+          set -eu
+          docker run --rm --platform linux/arm/v7 -v "$PWD":/w -w /w arm32v7/gcc:11-bullseye sh -euc '
+            gcc -std=gnu11 -O2 -Wall -Wextra -Isrc -Ithird_party \
+                -o nova-bridge src/bridge.c -ldl -lpthread
+            strip nova-bridge
+            echo "exported/linked: $(readelf -d nova-bridge | grep NEEDED)"
+            echo "highest glibc: $(readelf -V nova-bridge | grep -o "GLIBC_[0-9.]*" | sort -uV | tail -1)"
+          '
+          mkdir -p dist
+          cp nova-bridge install.sh uninstall.sh README.md dist/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nova-bridge
+          path: bridge/dist/*
